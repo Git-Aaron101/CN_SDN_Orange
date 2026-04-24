@@ -69,36 +69,36 @@ This helps prevent **network congestion and broadcast storms** while maintaining
 ## 🚀 Commands
 
 ryu-manager broadcast_control.py
-# Clean previous setup
+### Clean previous setup
 sudo mn -c
 
-# Start Mininet
+### Start Mininet
 sudo mn --topo single,3 \
 --controller=remote,ip=127.0.0.1,port=6653 \
 --switch ovsk,protocols=OpenFlow13
 
-# Show topology
+### Show topology
 net
 
-# Test connectivity
+### Test connectivity
 pingall
 
-# Measure latency
+### Measure latency
 h1 ping -c 4 h2
 
-# View flow rules
+### View flow rules
 sh ovs-ofctl -O OpenFlow13 dump-flows s1
 
-# Generate broadcast traffic
+### Generate broadcast traffic
 h1 arping -I h1-eth0 10.0.0.2
 
-# Measure throughput
+### Measure throughput
 h1 iperf -s &
 sleep 2
 h2 iperf -c 10.0.0.1
 
-# Optional broadcast stress
+### Optional broadcast stress
 h1 ping -b 10.0.0.255
 
-# Exit
+### Exit
 exit
